@@ -10,6 +10,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://automationexercise.com',
     trace: 'on-first-retry',
+    testIdAttribute: 'data-qa',
   },
 
   projects: [
