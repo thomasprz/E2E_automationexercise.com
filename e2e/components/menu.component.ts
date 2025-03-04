@@ -1,6 +1,6 @@
 import {Page, Locator, expect} from '@playwright/test'
 import { BasePage } from '../pages/base.page'
-import { RegisterPage } from '../pages/register.page'
+import { SignupPage } from '../pages/signup.page'
 import { HomePage } from '../pages/home.page'
 
 export class MenuComponent {
@@ -16,11 +16,17 @@ export class MenuComponent {
 
     constructor(page:Page){
         this.page = page // MenuComponent n'a pas besoin d'utiliser les fonctionnalités de BasePage (comme la navigation vers une URL), donc supprimer l'appel à super(page) et ne pas hériter de BasePage.
-        this.home = this.page.getByRole('link', {name:'Home'})
+        this.home = page.getByRole('link', {name:'Home'})
+        this.signupLogin = page.getByRole('link', {name: ' Signup / Login'})
     }
 
     async visitHome(){
         await this.home.click()
         return new HomePage(this.page) // Retourne une instance de HomePage.
+    }
+
+    async visitSignupLogin(){
+        await this.signupLogin.click()
+        return new SignupPage(this.page)
     }
 }
