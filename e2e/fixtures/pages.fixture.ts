@@ -1,12 +1,12 @@
 import {test as pagesTest} from '@playwright/test'
 import { HomePage } from '../pages/home.page'
 import { LoginPage } from '../pages/login.page'
-import { RegisterPage } from '../pages/register.page'
+import { SignupPage } from '../pages/signup.page'
 
 interface Pages {
     home : HomePage,
     login : LoginPage,
-    register : RegisterPage,
+    signup : SignupPage,
 }
 
 export const pages = pagesTest.extend<Pages>({
@@ -16,7 +16,7 @@ export const pages = pagesTest.extend<Pages>({
     login: async ({page}, use) => {
         await use(new LoginPage(page))
     },
-    register: async ({page}, use) => {
-        await use(new RegisterPage(page))
+    signup: async ({page}, use) => {
+        await use(new SignupPage(page))
     }
 })
