@@ -1,6 +1,5 @@
 import { BasePage } from './base.page';
 import {Page, Locator, expect} from '@playwright/test'
-import { SignupPage } from './signup.page';
 
 export class LoginPage extends BasePage {
     //SIGNUP
@@ -31,6 +30,7 @@ export class LoginPage extends BasePage {
     async expectLoginPage(){
         await expect(this.page).toHaveURL(this.url)
         await expect(this.locatorSignupHeader).toBeVisible()
+        await expect(this.locatorLoginHeader).toBeVisible()
     }
 
     async fillUserSignupForm(user){
@@ -42,6 +42,6 @@ export class LoginPage extends BasePage {
     async fillLoginAccountForm(user){
         await this.locatorEmailLoginInput.fill(user.email)
         await this.locatorPasswordInput.fill(user.password)
-        await this.locatorSignupButton.click()
+        await this.locatorloginButton.click()
     }
 }
