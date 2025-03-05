@@ -1,4 +1,5 @@
 import { DatatypeModule, faker } from '@faker-js/faker';
+import { StatementSync } from 'node:sqlite';
 
 export function createAccountInformationFaker() {
   return {
@@ -8,3 +9,19 @@ export function createAccountInformationFaker() {
     year:faker.number.int({min:1920,max:2025}).toString(),
   };
 }
+
+export function createAccountAddressInformationFaker() {
+  return {
+    firstname: faker.person.firstName(),
+    lastname: faker.person.lastName(),
+    company: faker.company.name(),
+    address: faker.location.streetAddress(),
+    address2: faker.location.secondaryAddress(),
+    country: 'New Zealand',
+    state: faker.location.state(),
+    city: faker.location.city(),
+    zipcode: faker.location.zipCode(),
+    mobile: faker.phone.number()
+  };
+}
+
