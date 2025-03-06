@@ -6,3 +6,10 @@ export function createSignupUserFaker() {
     email: faker.internet.email(),
   };
 }
+
+export function loginToAccountFaker() {
+  return {
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+  };
+}
