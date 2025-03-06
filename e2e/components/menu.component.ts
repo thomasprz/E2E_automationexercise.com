@@ -8,6 +8,7 @@ export class MenuComponent {
     readonly home : Locator
     readonly products : Locator
     readonly cart : Locator
+    readonly logout : Locator
     readonly deleteAccount : Locator
     readonly signupLogin : Locator
     readonly testCases : Locator
@@ -20,6 +21,8 @@ export class MenuComponent {
         this.home = page.getByRole('link', {name:'Home'})
         this.signupLogin = page.getByRole('link', {name: ' Signup / Login'})
         this.deleteAccount = page.getByRole('link', {name:' Delete Account'})
+        this.logout = page.getByRole('link', {name:' Logout'})
+        this.contactUs = page.getByRole('link', {name:' Contact us'})
     }
 
     async visitHome(){
@@ -36,5 +39,13 @@ export class MenuComponent {
 
     async clickDeleteAccount(){
         await this.deleteAccount.click()
+    }
+
+    async clickLogout(){
+        await this.logout.click()
+    }
+
+    async visitContactUs(){
+        await this.contactUs.click()
     }
 }
