@@ -1,5 +1,6 @@
 import { BasePage } from './base.page';
 import {Page, Locator, expect} from '@playwright/test'
+import { DeleteAccountPage } from './delete-account.page';
 
 export class LoginPage extends BasePage {
     //SIGNUP
@@ -7,11 +8,15 @@ export class LoginPage extends BasePage {
     readonly locatorNameInput : Locator
     readonly locatorEmailInput : Locator
     readonly locatorSignupButton : Locator
+    readonly locatorIncorrectMessageSignup : Locator
     //LOGIN
     readonly locatorLoginHeader: Locator
     readonly locatorloginButton : Locator
     readonly locatorEmailLoginInput : Locator
     readonly locatorPasswordInput : Locator
+    readonly locatorIncorrectMessageLogin : Locator
+    //PAGE
+    readonly deleteAccount : DeleteAccountPage
 
     constructor(page:Page){
         super(page, "/login");
@@ -20,11 +25,16 @@ export class LoginPage extends BasePage {
         this.locatorNameInput = page.getByTestId('signup-name')
         this.locatorEmailInput = page.getByTestId('signup-email')
         this.locatorSignupButton = page.getByRole('button', {name: 'Signup'})
+        this.locatorIncorrectMessageSignup = page.locator('.signup-form p')
+
         //LOGIN
         this.locatorLoginHeader = page.getByRole('heading', {name:'Login to your account'})
         this.locatorEmailLoginInput = page.getByTestId('login-email')
         this.locatorPasswordInput =  page.getByTestId('login-password')
         this.locatorloginButton =  page.getByTestId('login-button')
+        this.locatorIncorrectMessageLogin = page.locator('.login-form p')
+        //PAGE
+        this.deleteAccount = new DeleteAccountPage(page)
     }
 
     async expectLoginPage(){
