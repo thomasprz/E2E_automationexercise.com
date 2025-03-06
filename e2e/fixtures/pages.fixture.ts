@@ -3,12 +3,14 @@ import { HomePage } from '../pages/home.page'
 import { LoginPage } from '../pages/login.page'
 import { SignupPage } from '../pages/signup.page'
 import { RequestApiPage } from '../pages/api/api.page'
+import { ContactPage } from '../pages/contact.page'
 
 interface Pages {
     home : HomePage,
     login : LoginPage,
     signup : SignupPage,
     api: RequestApiPage
+    contact : ContactPage
 }
 
 export const pages = pagesTest.extend<Pages>({
@@ -23,5 +25,8 @@ export const pages = pagesTest.extend<Pages>({
     },
     api: async ({request}, use) => {
         await use(new RequestApiPage(request))
+    },
+    contact: async ({page}, use) => {
+        await use(new ContactPage(page))
     },
 })
