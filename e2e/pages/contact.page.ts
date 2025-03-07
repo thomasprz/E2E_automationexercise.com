@@ -14,7 +14,7 @@ export class ContactPage extends BasePage{
     readonly locatorHomeButton : Locator
 
     constructor(page:Page){
-        super(page,'/contact_us')
+        super(page)
         this.locatorContactHeader = page.getByRole('heading', {name:'Get In Touch'})
         this.locatorNameInput = page.getByTestId('name')
         this.locatorEmailInput = page.getByTestId('email')
@@ -28,7 +28,7 @@ export class ContactPage extends BasePage{
     }
 
     async expectContactPage(){
-        await expect(this.page).toHaveURL(this.url)
+        await expect(this.page).toHaveURL('/contact_us')
         await expect(this.locatorContactHeader).toBeVisible()
     }
 
