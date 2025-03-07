@@ -6,13 +6,13 @@ export class AccountCreatedPage extends BasePage {
     readonly locatorContinueButton : Locator
 
     constructor(page:Page){
-        super(page, '/account_created')
+        super(page)
         this.locatorAccountCreatedHeader = page.getByRole('heading', {name:'Account Created!'})
         this.locatorContinueButton = page.getByTestId('continue-button')
     }
 
     async expectAccountCreatedPage(){
-        await expect(this.page).toHaveURL(this.url)
+        await expect(this.page).toHaveURL('/account_created')
         await expect(this.locatorAccountCreatedHeader).toBeVisible()
     }
 
