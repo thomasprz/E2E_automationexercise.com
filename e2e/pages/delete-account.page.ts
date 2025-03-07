@@ -6,13 +6,13 @@ export class DeleteAccountPage extends BasePage {
     readonly locatorContinueButton : Locator
 
     constructor(page:Page){
-        super(page, '/delete_account')
+        super(page)
         this.locatorAccountDeletedHeader = page.getByRole('heading', {name:'Account Deleted!'})
         this.locatorContinueButton = page.getByTestId('continue-button')
     }
 
     async expectDeleteAccountPage(){
-        await expect(this.page).toHaveURL(this.url)
+        await expect(this.page).toHaveURL('/delete_account')
     }
 
     async clickContinue(){
