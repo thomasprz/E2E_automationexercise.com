@@ -33,7 +33,7 @@ export class SignupPage extends BasePage {
     readonly deleteAccount : DeleteAccountPage
 
     constructor(page:Page){
-        super(page, "/signup")
+        super(page)
         this.locatorAccountHeader = page.getByRole('heading', {name:'Enter Account Information'})
         //ACCOUNT INFORMATION
         this.locatorGender = page.getByLabel('Mr.')
@@ -63,7 +63,7 @@ export class SignupPage extends BasePage {
     }
 
     async expectSignupPage(){
-        await expect(this.page).toHaveURL(this.url)
+        await expect(this.page).toHaveURL('/signup')
         await expect(this.locatorAccountHeader).toBeVisible()
     }
 
