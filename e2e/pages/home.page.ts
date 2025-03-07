@@ -5,12 +5,12 @@ export class HomePage extends BasePage {
     readonly locatorHomepageHeader : Locator
 
     constructor(page:Page){
-        super(page, '/')
+        super(page)
         this.locatorHomepageHeader = page.getByAltText('Website for automation practice');
     }
 
     async expectHomepage(){
-        await expect(this.page).toHaveURL(this.url);
+        await expect(this.page).toHaveURL('/');
         await expect(this.locatorHomepageHeader).toBeVisible()
     }
 }
