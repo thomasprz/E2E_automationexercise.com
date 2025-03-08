@@ -17,4 +17,12 @@ export class BasePage {
   async popup(){
     await this.locatorPopup.click()
   }
+
+  async scrollDown(){
+    await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+  }
+
+  async waitFor(){
+    await this.page.waitForTimeout(1000)
+  }
 }
