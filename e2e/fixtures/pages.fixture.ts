@@ -6,6 +6,7 @@ import { RequestApiPage } from '../pages/api/api.page'
 import { ContactPage } from '../pages/contact.page'
 import { TestCasesPage } from '../pages/test-cases.page'
 import { ProductsPage } from '../pages/products.page'
+import { CartPage } from '../pages/cart.page'
 
 interface Pages {
     home : HomePage,
@@ -15,6 +16,7 @@ interface Pages {
     contact : ContactPage
     testCases : TestCasesPage
     products: ProductsPage
+    cart : CartPage
 }
 
 export const pages = pagesTest.extend<Pages>({
@@ -38,5 +40,8 @@ export const pages = pagesTest.extend<Pages>({
     },
     products: async({page}, use) => {
         await use(new ProductsPage(page))
+    },
+    cart: async({page}, use) => {
+        await use(new CartPage(page))
     },
 })
