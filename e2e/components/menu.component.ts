@@ -15,6 +15,7 @@ export class MenuComponent {
     readonly locatorapiTesting : Locator
     readonly locatorvideoTutorials : Locator
     readonly locatorcontactUs : Locator
+    readonly locatorCart : Locator
 
     constructor(page:Page){
         this.page = page // MenuComponent n'a pas besoin d'utiliser les fonctionnalités de BasePage (comme la navigation vers une URL), donc supprimer l'appel à super(page) et ne pas hériter de BasePage.
@@ -25,6 +26,8 @@ export class MenuComponent {
         this.locatordeleteAccount = page.getByRole('link', {name:' Delete Account'})
         this.locatortestCases = page.getByRole('link', {name:' Test Cases',  exact: true})
         this.locatorcontactUs = page.getByRole('link', {name:' Contact us'})
+        this.locatorCart = page.getByRole('link', {name:' Cart'})
+
     }
 
     async visitHome(){
@@ -51,4 +54,8 @@ export class MenuComponent {
     async visitTestCases(){
         await this.locatortestCases.click()
     }
+    async visitCart(){
+        await this.locatorCart.click()
+    }
+    
 }
