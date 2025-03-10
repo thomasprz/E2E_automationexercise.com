@@ -8,6 +8,10 @@ export class ProductDetailsPage extends BasePage {
     readonly locatorAvailabilityProduct : Locator
     readonly locatorConditionProduct : Locator
     readonly locatorBrandProduct : Locator
+    readonly locatorquantityInput : Locator
+    readonly locatorAddToCartButton : Locator
+    readonly locatorContinueShoppingButton : Locator
+    readonly locatorViewCart : Locator
 
     constructor(page:Page,){
         super(page)
@@ -17,6 +21,10 @@ export class ProductDetailsPage extends BasePage {
         this.locatorAvailabilityProduct = page.locator('.product-information p:has-text("Availability:")');
         this.locatorConditionProduct = page.locator('.product-information p:has-text("Condition:")');
         this.locatorBrandProduct = page.locator('.product-information p:has-text("Brand:")');
+        this.locatorquantityInput = page.locator('#quantity')
+        this.locatorAddToCartButton = page.getByRole('button', {name:' Add to cart'})
+        this.locatorContinueShoppingButton = page.getByRole('button', {name:"Continue Shopping"})
+        this.locatorViewCart = page.getByRole('link', {name:'View Cart'})
 
     }
 
@@ -31,5 +39,18 @@ export class ProductDetailsPage extends BasePage {
         await expect(this.locatorAvailabilityProduct).toBeVisible()
         await expect(this.locatorConditionProduct).toBeVisible()
         await expect(this.locatorBrandProduct).toBeVisible()
+    }
+
+    async fillQuantityProduct(quantity){
+        await this.locatorquantityInput.fill(quantity)
+    }
+
+    async AddProductToCartContinueShopping(){
+        await this.locatorAddToCartButton.click()
+        await this.locatorContinueShoppingButton.click()
+    }
+    async AddProductToCartViewCart(){
+        await this.locatorAddToCartButton.click()
+        await this.locatorViewCart.click()
     }
 }
