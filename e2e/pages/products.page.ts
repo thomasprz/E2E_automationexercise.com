@@ -10,6 +10,8 @@ export class ProductsPage extends BasePage{
     readonly locatorAddToCartButton : Locator
     readonly locatorSearchInput : Locator
     readonly locatorSearchButton : Locator
+    readonly locatorContinueShoppingButton : Locator
+    readonly locatorViewCart : Locator
     //PAGE
     readonly details : ProductDetailsPage
 
@@ -22,6 +24,8 @@ export class ProductsPage extends BasePage{
         this.locatorAddToCartButton = page.locator('.add-to-cart')
         this.locatorSearchInput = page.getByRole('textbox', { name: 'Search Product' })
         this.locatorSearchButton = page.locator('#submit_search')
+        this.locatorContinueShoppingButton = page.getByRole('button', {name:"Continue Shopping"})
+        this.locatorViewCart = page.getByRole('link', {name:'View Cart'})
 
         //PAGE
         this.details = new ProductDetailsPage(page)
@@ -55,5 +59,12 @@ export class ProductsPage extends BasePage{
             await expect(productName).toContain(productName);
             console.log(productName)
         }
+    }
+    async clickContinueShopping(){
+        await this.locatorContinueShoppingButton.click()
+    }
+
+    async clickViewCart(){
+        await this.locatorViewCart.click()
     }
 }
