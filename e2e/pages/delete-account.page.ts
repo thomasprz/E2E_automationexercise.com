@@ -13,6 +13,7 @@ export class DeleteAccountPage extends BasePage {
 
     async expectDeleteAccountPage(){
         await expect(this.page).toHaveURL('/delete_account')
+        await expect(this.locatorAccountDeletedHeader).toBeVisible()
     }
 
     async clickContinue(){
