@@ -63,6 +63,47 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await products.details.expectProductDetailsPage()
         await products.details.fillQuantityProduct(dataProduct.quantity)
         await products.details.AddProductToCartViewCart()
+        //Assert
         await cart.expectOneProductInCart(dataProduct)
+    })
+
+    test('Supprimer un produit et vérifier que le panier est vide', async ({cart, home}) => {
+         //Arrange
+        const product = {
+            id:4,
+            name: 'Winter Top',
+            price: 600,
+            quantity: '4',
+        }
+        //Act
+        await home.products.clickAddToCart(product.id)
+        await home.products.clickViewCart()
+        await cart.expectCartPage()
+        await cart.removeOneProduct()
+        await cart.expectEmptyCart()
+    })
+
+    test('Supprimer un produit et vérifier que le panier contient un produit de moins', async ({cart, home}) => {
+        //Arrange
+        const productFirst = [{
+            id:4,
+            name: 'Sleeveless Dress',
+            price: 1000,
+            quantity: '1',
+        },
+        {
+            id: 0,
+            name: "Blue Top",
+            price: 500,
+            quantity: "1",
+        }]
+        //Act
+        await home.products.clickAddToCart(productFirst[0].id)
+        await home.products.clickContinueShopping()
+        await home.products.clickAddToCart(productFirst[1].id)
+        await home.products.clickViewCart()
+        await cart.expectCartPage()
+        //Assert
+        await cart.removeOneProductExpectOneProductLessInCart(productFirst[0].name)
     })
 })
