@@ -1,5 +1,4 @@
 import { DatatypeModule, faker } from '@faker-js/faker';
-import { StatementSync } from 'node:sqlite';
 
 export function createAccountInformationFaker() {
   return {
