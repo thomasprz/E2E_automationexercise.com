@@ -7,6 +7,8 @@ import { ContactPage } from '../pages/contact.page'
 import { TestCasesPage } from '../pages/test-cases.page'
 import { ProductsPage } from '../pages/products.page'
 import { CartPage } from '../pages/cart.page'
+import { CheckoutPage } from '../pages/checkout.page'
+import { PaymentPage } from '../pages/payment.page'
 
 interface Pages {
     home : HomePage,
@@ -17,6 +19,8 @@ interface Pages {
     testCases : TestCasesPage
     products: ProductsPage
     cart : CartPage
+    checkout : CheckoutPage
+    payment : PaymentPage
 }
 
 export const pages = pagesTest.extend<Pages>({
@@ -43,5 +47,11 @@ export const pages = pagesTest.extend<Pages>({
     },
     cart: async({page}, use) => {
         await use(new CartPage(page))
+    },
+    checkout: async({page}, use) => {
+        await use(new CheckoutPage(page))
+    },
+    payment: async({page}, use) => {
+        await use(new PaymentPage(page))
     },
 })
