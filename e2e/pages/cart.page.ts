@@ -1,6 +1,7 @@
 import {Page,Locator,expect} from '@playwright/test'
 import { BasePage } from './base.page';
 import { FooterComponent } from '../components/footer.component';
+import { MenuComponent } from '../components/menu.component';
 
 export class CartPage extends BasePage {
     readonly footer : FooterComponent
@@ -14,6 +15,7 @@ export class CartPage extends BasePage {
     readonly locatorRegisterLogin : Locator
     readonly locatorContinueOnCart : Locator
     readonly locatorEmptyCart : Locator
+    readonly menu : MenuComponent
 
     constructor(page:Page){
         super(page)
@@ -29,6 +31,7 @@ export class CartPage extends BasePage {
         this.locatorEmptyCart = page.locator('#empty_cart')
         //PAGE
         this.footer = new FooterComponent(page)
+        this.menu = new MenuComponent(page)
     }
 
     async expectCartPage(){
@@ -80,4 +83,14 @@ export class CartPage extends BasePage {
         await expect(this.locatorEmptyCart).toContainText('Cart is empty!')
     }
 
+    async cleanCartPage() {
+        if (await this.locatorEmptyCart.isVisible()) {
+            return;
+        }
+        while (await this.locatorCartDelete.count() > 0) {
+            await this.locatorCartDelete.first().click();
+            await this.page.waitForTimeout(500);
+        }
+        await expect(this.locatorEmptyCart).toBeVisible();
+    }
 }

@@ -1,6 +1,6 @@
 import {Page, Locator, expect} from '@playwright/test'
 import { BasePage } from '../pages/base.page'
-import { SignupPage } from '../pages/signup.page'
+import { SignupPage } from '../pages/account/signup.page'
 import { HomePage } from '../pages/home.page'
 
 export class MenuComponent {

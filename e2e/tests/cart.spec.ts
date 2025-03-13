@@ -1,6 +1,7 @@
 import {test, expect} from '../fixtures/base.fixture'
 import {fillSubscriptionFieldFaker} from '../factories/footer.factory'
 import { privateDecrypt } from 'crypto'
+import { Configuration } from '../config/configuration'
 
 test.describe('Panier', {tag:'@regression'}, () => {
 
@@ -80,6 +81,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await home.products.clickViewCart()
         await cart.expectCartPage()
         await cart.removeOneProduct()
+        //Assert
         await cart.expectEmptyCart()
     })
 
@@ -105,5 +107,39 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectCartPage()
         //Assert
         await cart.removeOneProductExpectOneProductLessInCart(productFirst[0].name)
+    })
+
+    test('Rechercher des produits et vérifier le panier après connexion', async ({home, products, cart, login}) => {
+        //Arrange
+        const productData = {
+            name: 'Frozen Tops For Kids',
+            price: 278,
+            quantity: '1',
+        }
+        const userLoginData = {
+            email: Configuration.email, 
+            password: Configuration.password,
+            username: Configuration.username
+        };        
+        //Act
+        await home.menu.visitSignupLogin()
+        await login.fillLoginAccountForm(userLoginData)
+        await home.menu.expectLoggedIn(userLoginData.username)
+        await home.menu.visitCart()
+        await cart.cleanCartPage()
+        await cart.menu.clickLogout()
+        await cart.menu.visitProducts()
+        await expect(products.locatorAllProductsHeader).toBeVisible()
+        await products.searchProduct(productData.name)
+        await products.expectSearchProduct(productData.name)
+        await products.addProductsFromSearchToCart()
+        await products.menu.visitCart()
+        await cart.expectOneProductInCart(productData)
+        await cart.menu.visitSignupLogin()
+        await login.fillLoginAccountForm(userLoginData)
+        await home.menu.expectLoggedIn(userLoginData.username)
+        await home.menu.visitCart()
+        //Assert
+        await cart.expectOneProductInCart(productData)
     })
 })

@@ -1,14 +1,14 @@
 import {test as pagesTest} from '@playwright/test'
 import { HomePage } from '../pages/home.page'
-import { LoginPage } from '../pages/login.page'
-import { SignupPage } from '../pages/signup.page'
+import { LoginPage } from '../pages/account/login.page'
+import { SignupPage } from '../pages/account/signup.page'
 import { RequestApiPage } from '../pages/api/api.page'
 import { ContactPage } from '../pages/contact.page'
 import { TestCasesPage } from '../pages/test-cases.page'
-import { ProductsPage } from '../pages/products.page'
+import { ProductsPage } from '../pages/products/products.page'
 import { CartPage } from '../pages/cart.page'
 import { CheckoutPage } from '../pages/checkout.page'
-import { PaymentPage } from '../pages/payment.page'
+import { PaymentPage } from '../pages/payment/payment.page'
 
 interface Pages {
     home : HomePage,
