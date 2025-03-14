@@ -6,6 +6,7 @@ import {commentAreaFaker} from '../factories/checkout.factory'
 import {cardDataFaker} from '../factories/payment.factory'
 import {createAccountUserApi} from '../factories/api.factory'
 
+
 test.describe("Processus de commande", {tag:'@regression'}, () => {
     test.beforeEach('Naviguer vers la page d\'accueil', async ({home}) => {
         await home.goTo()
@@ -158,7 +159,45 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await login.deleteAccount.clickContinue()
     })
 
-    test('Télécharger la facture après une commande', async ({cart}) => {
-        
+    test('Télécharger la facture après une commande', async ({home, cart, login, signup, checkout, payment}) => {
+        //Arrange
+        const userData = createSignupUserFaker()
+        const userAccountData = createAccountInformationFaker()
+        const userAdressData = createAccountAddressInformationFaker()
+        const orderCommentData = commentAreaFaker()
+        const paymentData = cardDataFaker()
+
+        const productData = {
+            name: 'Blue Top',
+            price: 500,
+            quantity: '1',
+        }
+        //Act
+        await home.products.clickFirstAddToCart()
+        await home.products.clickViewCart()
+        await cart.expectCartPage()
+        await cart.clickProceedToCheckoutAndLogin()
+        await login.fillUserSignupForm(userData)
+        await signup.fillAccountInformation(userAccountData)
+        await signup.fillAddressInformation(userAdressData)
+        await signup.accountCreated.expectAccountCreatedPage()
+        await signup.accountCreated.clickContinue()
+        await home.menu.expectLoggedIn(userData.name)
+        await home.menu.visitCart()
+        await cart.clickProceedToCheckout()
+        await checkout.expectDeliveryAddress(userAdressData)
+        await checkout.expectBillingyAddress(userAdressData)
+        await checkout.expectReviewOrderOneProduct(productData)
+        await checkout.fillCommentArea(orderCommentData)
+        await checkout.clickPlaceOrder()
+        await payment.fillPaymentForm(paymentData)
+        await payment.done.clickDownloadInvoice()
+        await payment.done.downloadInvoice()
+        //Assert
+        await payment.done.expectInvoiceInformation(userAdressData,productData)
+        await payment.done.clickContinue()
+        await home.menu.clickDeleteAccount()
+        await signup.deleteAccount.expectDeleteAccountPage()
+        await signup.deleteAccount.clickContinue()
     })
 })
