@@ -1,6 +1,5 @@
 import {test, expect} from '../fixtures/base.fixture'
 import {fillSubscriptionFieldFaker} from '../factories/footer.factory'
-import { privateDecrypt } from 'crypto'
 import { Configuration } from '../config/configuration'
 
 test.describe('Panier', {tag:'@regression'}, () => {
@@ -142,4 +141,14 @@ test.describe('Panier', {tag:'@regression'}, () => {
         //Assert
         await cart.expectOneProductInCart(productData)
     })
+
+    test('Ajouter au panier à partir des articles recommandés', async ({home, cart, menu}) => {
+        await home.scrollDown()
+        await expect(home.locatorRecommendedItemsHeader).toBeVisible()
+        await home.addRecommendedProductToCart()
+        await cart.expectCartPage()
+        await expect(cart.locatorProduct).toBeVisible()
+        await expect(cart.locatorProduct).toHaveCount(1)
+    })
+
 })
