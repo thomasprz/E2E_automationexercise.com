@@ -1,5 +1,6 @@
 import {Locator, Page, expect} from '@playwright/test'
 import { BasePage } from '../base.page';
+import * as fs from 'fs';
 
 export class PaymentDonePage extends BasePage{
     readonly locatorOrderPlacedHeader : Locator
@@ -25,5 +26,22 @@ export class PaymentDonePage extends BasePage{
 
     async clickDownloadInvoice(){
         await this.locatorDownloadInvoiceButton.click()
+    }
+
+    async downloadInvoice() {
+        await this.locatorDownloadInvoiceButton.click();
+        const download = await this.page.waitForEvent('download');
+        if (download) {
+          await download.saveAs('./e2e/download/invoice/invoice.txt');
+          console.log('Fichier téléchargé.');
+        } else {
+          console.log('Erreur téléchargement du fichier.');
+        }
+      }
+
+    async expectInvoiceInformation(order, total){
+        const invoice =  `Hi ${order.firstname} ${order.lastname}, Your total purchase amount is ${total.price}. Thank you`
+        const fileContent = fs.readFileSync(('e2e/download/invoice/invoice.txt'), 'utf8');
+        expect(fileContent).toContain(invoice);
     }
 }
