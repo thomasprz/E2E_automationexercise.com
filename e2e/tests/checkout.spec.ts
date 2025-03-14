@@ -4,7 +4,7 @@ import {createAccountInformationFaker} from '../factories/signup.factory'
 import {createAccountAddressInformationFaker} from '../factories/signup.factory'
 import {commentAreaFaker} from '../factories/checkout.factory'
 import {cardDataFaker} from '../factories/payment.factory'
-import { Configuration } from '../config/configuration'
+import {createAccountUserApi} from '../factories/api.factory'
 
 test.describe("Processus de commande", {tag:'@regression'}, () => {
     test.beforeEach('Naviguer vers la page d\'accueil', async ({home}) => {
@@ -132,5 +132,33 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await payment.fillPaymentForm(cardData)
         await payment.done.expectPaymentDonePage()
         await payment.done.clickContinue()
+    })
+
+    test('Vérifier les détails de l\'adresse sur la page de paiement', async ({home, api, login,menu, products, cart, checkout}) => {
+        //Arrange
+        const userDataApi = createAccountUserApi()
+
+        //Act
+        await menu.visitSignupLogin()
+        const response = await api.createUserAccountApi(userDataApi)
+        const responseBody = await response.json()
+        expect(response.status()).toBe(200)
+        expect (responseBody.message).toBe('User created!')
+        await login.fillLoginAccountForm(userDataApi)
+        await menu.expectLoggedIn(userDataApi.name)
+        await home.products.clickFirstAddToCart()
+        await products.clickViewCart()
+        await cart.expectCartPage()
+        await cart.clickProceedToCheckout()
+        await checkout.expectDeliveryAddress(userDataApi)
+        await checkout.expectBillingyAddress(userDataApi)
+        await checkout.menu.clickDeleteAccount()
+        //Assert
+        await login.deleteAccount.expectDeleteAccountPage()
+        await login.deleteAccount.clickContinue()
+    })
+
+    test('Télécharger la facture après une commande', async ({cart}) => {
+        
     })
 })
