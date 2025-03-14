@@ -59,6 +59,10 @@ export class ProductsPage extends BasePage{
         await this.locatorAddToCartButton.nth(index).click()
     }
 
+    async clickFirstAddToCart(){
+        await this.locatorAddToCartButton.first().click()
+    }
+
     async searchProduct(product){
         await this.locatorSearchInput.fill(product)
         await this.locatorSearchButton.click()
