@@ -22,7 +22,7 @@ jobs:
           USER_EMAIL: ${{ vars.USER_EMAIL }}
           USER_PASSWORD: ${{ vars.USER_PASSWORD }}
       - name: run Playwright tests
-        run: npx playwright test --grep @smoke
+        run: npx playwright test
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
