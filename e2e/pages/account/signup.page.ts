@@ -81,13 +81,13 @@ export class SignupPage extends BasePage {
         await this.locatorFirstNameInput.fill(user.firstname)
         await this.locatorLastNameInput.fill(user.lastname)
         await this.locatorCompanyInput.fill(user.company)
-        await this.locatorAddressInput.fill(user.address)
+        await this.locatorAddressInput.fill(user.address1)
         await this.locatorAddress2Input.fill(user.address2)
         await this.locatorCountry.selectOption(user.country)
         await this.locatorStateInput.fill(user.state)
         await this.locatorCityInput.fill(user.city)
         await this.locatorZipcodeInput.fill(user.zipcode)
-        await this.locatorMobileInput.fill(user.mobile)
+        await this.locatorMobileInput.fill(user.mobile_number)
         await this.locatorCreateAccountButton.click()
     }
 }
