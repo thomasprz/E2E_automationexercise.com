@@ -4,7 +4,7 @@ import {createAccountInformationFaker} from '../factories/signup.factory'
 import {createAccountAddressInformationFaker} from '../factories/signup.factory'
 import { Configuration } from '../config/configuration'
 
-test.describe('Inscription', {tag:'@regression'}, () => {
+test.describe('Inscription', () => {
     test.beforeEach('Naviguer vers la page de connexion', async ({home, menu, login}) => {
         await home.goTo()
         await login.popup()
@@ -13,7 +13,7 @@ test.describe('Inscription', {tag:'@regression'}, () => {
         await login.expectLoginPage()
     })
 
-    test('Inscription utilisateur', async ({home, login, signup, menu}) => {
+    test('Inscription utilisateur @smoke', async  ({home, login, signup, menu}) => {
         //Arrange
         const userData = createSignupUserFaker()
         const userInformation = createAccountInformationFaker()
@@ -33,7 +33,7 @@ test.describe('Inscription', {tag:'@regression'}, () => {
         await home.expectHomepage()
     })
 
-    test("Inscription d'un utilisateur avec un e-mail existant", async ({login}) => {
+    test("Inscription d'un utilisateur avec un e-mail existant @regression", async ({login}) => {
         //Arrange
         const userData = {
             name: Configuration.username,
