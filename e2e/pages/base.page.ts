@@ -11,7 +11,6 @@ export class BasePage {
 
   async goTo() {
     await this.page.goto('/');
-    await this.page.waitForLoadState('networkidle')
   }
 
   async popup(){
