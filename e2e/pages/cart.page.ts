@@ -4,6 +4,7 @@ import { FooterComponent } from '../components/footer.component';
 import { MenuComponent } from '../components/menu.component';
 
 export class CartPage extends BasePage {
+    //LOCATOR
     readonly footer : FooterComponent
     readonly locatorCartName : Locator
     readonly locatorCartPrice : Locator
@@ -15,10 +16,12 @@ export class CartPage extends BasePage {
     readonly locatorRegisterLogin : Locator
     readonly locatorContinueOnCart : Locator
     readonly locatorEmptyCart : Locator
+    //PAGE
     readonly menu : MenuComponent
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorProduct = page.locator('tbody tr')
         this.locatorCartName = page.locator('.cart_description h4')
         this.locatorCartPrice = page.locator('.cart_price')
