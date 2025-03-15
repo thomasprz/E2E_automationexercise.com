@@ -2,14 +2,20 @@
   "name": "automationexercice",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression",
+    "report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.8"
+    "@types/node": "^22.13.8",
+    "allure-playwright": "^3.2.0"
   },
   "dependencies": {
     "@faker-js/faker": "^9.5.1",
