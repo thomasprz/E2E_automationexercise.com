@@ -25,7 +25,7 @@ export class ContactPage extends BasePage{
         this.locatorUploadFile = page.locator('[name="upload_file"]')
         this.locatorSubmitButton = page.getByTestId('submit-button')
         this.locatorAcceptDialog = page.getByRole('button', { name: 'Submit' });
-        this.locatorSuccessMessage = page.locator('.contact-form .alert-success')
+        this.locatorSuccessMessage = page.locator('#contact-page').locator('.alert-success');
         this.locatorHomeButton = page.locator('.btn-success')
     }
 
