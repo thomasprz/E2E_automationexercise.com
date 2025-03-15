@@ -41,8 +41,8 @@ export class SignupPage extends BasePage {
         this.locatorDayBirth = page.getByTestId('days')
         this.locatorMonthBirth = page.getByTestId('months')
         this.locatorYearBirth = page.getByTestId('years')
-        this.locatorNewsletter = page.getByRole('checkbox', {name:'Sign up for our newsletter!'})
-        this.locatorSpecialOffers = page.getByRole('checkbox', {name:'Receive special offers from our partners!'})
+        this.locatorNewsletter = page.locator('#newsletter')
+        this.locatorSpecialOffers = page.locator('#optin');
         this.locatorFirstNameInput = page.getByTestId('first_name')
         this.locatorLastNameInput = page.getByTestId('last_name')
         this.locatorCompanyInput = page.getByTestId('company')
