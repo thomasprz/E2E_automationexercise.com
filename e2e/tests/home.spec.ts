@@ -1,22 +1,27 @@
-import {test, expect} from '../fixtures/base.fixture'
-import {fillSubscriptionFieldFaker} from '../factories/footer.factory'
+import {test,expect} from '../fixtures/base.fixture'
 
-test.describe('Page d\'accueil', {tag:'@regression'}, () => {
-
-    test.beforeEach('Naviguer vers la page d\'accueil', async ({home}) => {
+test.describe('Page d\'accueil', {tag:'@regression'}, () =>{
+    test.beforeEach('Naviguer vers la page de connexion', async({home, menu, products}) => {
         await home.goTo()
         await home.popup()
         await home.expectHomepage()
     })
 
-    test('Vérifier l\'abonnement sur la page d\'accueil', async ({home}) =>{
-        //Arrange
-        const userEmailData = fillSubscriptionFieldFaker()
-
+    test('Vérification du Scroll Up avec la flèche', async ({home}) => {
         //Act
         await home.scrollDown()
         await expect(home.footer.locatorSubscriptionHeader).toBeVisible()
-        await home.footer.fillSubscriptionField(userEmailData.email)
-        await home.footer.expectSucessfullySubscription()
+        await home.clickArrowScrollUp()
+        //Assert
+        await expect(home.locatorFullFledgedHeader).toBeInViewport()
+    })
+
+    test('Vérification du Scroll Up sans la flèche', async ({home}) => {
+        //Act
+        await home.scrollDown()
+        await expect(home.footer.locatorSubscriptionHeader).toBeVisible()
+        await home.scrollUp()
+        //Assert
+        await expect(home.locatorFullFledgedHeader).toBeInViewport()
     })
 })
