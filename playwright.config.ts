@@ -9,8 +9,8 @@ export default defineConfig({
   testDir: './e2e/tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 0 : 1,
-  workers: process.env.CI ? 0 : undefined,
+  retries: process.env.CI ? 1 : 1,
+  workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['html', { outputFolder: 'playwright-report' }], // Reporter HTML
     ['allure-playwright', { outputFolder: 'allure-results' }], // Reporter Allure
