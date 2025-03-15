@@ -22,6 +22,10 @@ export class BasePage {
     await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   }
 
+  async scrollUp(){
+    await this.page.evaluate(() => window.scrollTo(0, 0))
+  }
+
   async waitFor(){
     await this.page.waitForTimeout(1000)
   }
