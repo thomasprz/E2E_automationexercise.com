@@ -31,19 +31,21 @@ export class PaymentDonePage extends BasePage{
     }
 
     async downloadInvoice() {
+        const downloadPromise = this.page.waitForEvent('download');
         await this.locatorDownloadInvoiceButton.click();
-        const download = await this.page.waitForEvent('download');
+        const download = await downloadPromise;
         if (download) {
           await download.saveAs('./e2e/download/invoice/invoice.txt');
-          console.log('Fichier téléchargé.');
+          console.log('Fichier correctement téléchargé');
         } else {
-          console.log('Erreur téléchargement du fichier.');
+          console.log('Erreur téléchargement du fichier');
         }
       }
 
-    async expectInvoiceInformation(order, total){
+      async expectInvoiceInformation(order, total){
         const invoice =  `Hi ${order.firstname} ${order.lastname}, Your total purchase amount is ${total.price}. Thank you`
-        const fileContent = fs.readFileSync(('e2e/download/invoice/invoice.txt'), 'utf8');
+        const fileContent = fs.readFileSync('./e2e/download/invoice/invoice.txt', 'utf8');
         expect(fileContent).toContain(invoice);
+        fs.unlinkSync('./e2e/download/invoice/invoice.txt');
     }
 }
