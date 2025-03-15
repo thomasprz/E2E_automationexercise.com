@@ -6,7 +6,6 @@ import {commentAreaFaker} from '../factories/checkout.factory'
 import {cardDataFaker} from '../factories/payment.factory'
 import {createAccountUserApi} from '../factories/api.factory'
 
-
 test.describe("Processus de commande", {tag:'@regression'}, () => {
     test.beforeEach('Naviguer vers la page d\'accueil', async ({home}) => {
         await home.goTo()
@@ -93,6 +92,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         //Assert
         await signup.deleteAccount.expectDeleteAccountPage()
         await signup.deleteAccount.clickContinue()
+        await home.expectHomepage()
     })
 
     test('Vérifier que l\'utilisateur peut se connecter avant le processus de commande', async ({home,menu,login, signup, cart, checkout, payment}) => {
