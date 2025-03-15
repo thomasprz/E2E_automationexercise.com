@@ -10,7 +10,7 @@ test.describe('Contact', () => {
         await contact.expectContactPage()
     })
 
-    test('Saisie du formulaire de contact @smoke', async ({contact, home}) => {
+    test('Saisie du formulaire de contact @regression', async ({contact, home}) => {
     //Arrange
     const userInfo = formContactDataFaker()
     //Act
