@@ -3,6 +3,7 @@ import { BasePage } from './base.page';
 import { MenuComponent } from '../components/menu.component';
 
 export class CheckoutPage extends BasePage {
+    //LOCATOR
     readonly locatorAddressDelivery : Locator
     readonly locatorAddressDetailsHeader : Locator
     readonly locatorCartPrice : Locator
@@ -16,6 +17,7 @@ export class CheckoutPage extends BasePage {
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorAddressDelivery = page.locator('#address_delivery')
         this.locatorInvoiceAddress = page.locator('#address_invoice');
         this.locatorAddressDetailsHeader = page.getByRole('heading', {name:'Address Details'})
@@ -26,7 +28,6 @@ export class CheckoutPage extends BasePage {
         this.locatorPlaceOrderButton = page.getByRole('link', {name:'Place Order'})
         //PAGE
         this.menu = new MenuComponent(page)
-
     }
 
     async expectCheckoutPage(){
