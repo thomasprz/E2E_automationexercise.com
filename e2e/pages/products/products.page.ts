@@ -69,11 +69,11 @@ export class ProductsPage extends BasePage{
         await this.locatorSearchButton.click()
     }
 
-    async expectSearchProduct(name){
-        const products = await this.page.locator('.single-products').all()
+    async expectSearchProduct(name) {
+        const products = await this.page.locator('.single-products').all();
         for (const singleProduct of products) {
             const productName = await singleProduct.locator('.productinfo p').innerText();
-            await expect(productName).toContain(name);
+            await expect(productName.toLowerCase()).toContain(name.toLowerCase());
         }
     }
 
