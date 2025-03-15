@@ -2,7 +2,7 @@ import {test, expect} from '../fixtures/base.fixture'
 import {fillSubscriptionFieldFaker} from '../factories/footer.factory'
 import { Configuration } from '../config/configuration'
 
-test.describe('Panier', {tag:'@regression'}, () => {
+test.describe('Panier', () => {
 
     test.beforeEach('Naviguer vers la page d\'accueil', async ({home, menu, cart}) => {
         await home.goTo()
@@ -10,7 +10,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await home.expectHomepage()
     })
 
-    test('Vérifier l\'abonnement sur la page du panier', async ({cart, menu}) =>{
+    test('Vérifier l\'abonnement sur la page du panier @regression', async ({cart, menu}) =>{
         //Arrange
         const userEmailData = fillSubscriptionFieldFaker()
         //Act
@@ -23,7 +23,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.footer.expectSucessfullySubscription()
     })
 
-    test('Ajouter des produits au panier', async ({cart, menu, products}) => {
+    test('Ajouter des produits au panier @smoke', async ({cart, menu, products}) => {
         //Arrange
         const dataProducts = [
             {
@@ -50,7 +50,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectProductsInCart(dataProducts)
     })
 
-    test('Vérifier la quantité des produits dans le panier', async ({menu, cart,products}) => {
+    test('Vérifier la quantité des produits dans le panier @regression', async ({menu, cart,products}) => {
         //Arrange
         const dataProduct = {
             id:4,
@@ -68,7 +68,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectOneProductInCart(dataProduct)
     })
 
-    test('Supprimer un produit et vérifier que le panier est vide', async ({cart, home}) => {
+    test('Supprimer un produit et vérifier que le panier est vide @regression', async ({cart, home}) => {
          //Arrange
         const product = {
             id:4,
@@ -85,7 +85,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectEmptyCart()
     })
 
-    test('Supprimer un produit et vérifier que le panier contient un produit de moins', async ({cart, home}) => {
+    test('Supprimer un produit et vérifier que le panier contient un produit de moins @regression', async ({cart, home}) => {
         //Arrange
         const productFirst = [{
             id:4,
@@ -109,7 +109,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.removeOneProductExpectOneProductLessInCart(productFirst[0].name)
     })
 
-    test('Rechercher des produits et vérifier le panier après connexion', async ({home, products, cart, login}) => {
+    test('Rechercher des produits et vérifier le panier après connexion @regression', async ({home, products, cart, login}) => {
         //Arrange
         const productData = {
             name: 'Frozen Tops For Kids',
@@ -143,7 +143,7 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectOneProductInCart(productData)
     })
 
-    test('Ajouter au panier à partir des articles recommandés', async ({home, cart}) => {
+    test('Ajouter au panier à partir des articles recommandés @regression', async ({home, cart}) => {
         await home.scrollDown()
         await expect(home.locatorRecommendedItemsHeader).toBeVisible()
         await home.addRecommendedProductToCart()

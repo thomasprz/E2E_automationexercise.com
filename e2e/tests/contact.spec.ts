@@ -1,8 +1,8 @@
 import {test,expect} from '../fixtures/base.fixture'
 import {formContactDataFaker} from '../factories/contact.factory'
 
-test.describe('Contact', {tag: "@regression"}, () => {
-    test.beforeEach('Naviguer vers la page de ontact', async ({home, menu, contact}) => {
+test.describe('Contact', () => {
+    test.beforeEach('Naviguer vers la page de contact', async ({home, menu, contact}) => {
         await home.goTo()
         await home.popup()
         await home.expectHomepage()
@@ -10,7 +10,7 @@ test.describe('Contact', {tag: "@regression"}, () => {
         await contact.expectContactPage()
     })
 
-    test('Saisie du formulaire de contact', async ({contact, home}) => {
+    test('Saisie du formulaire de contact @smoke', async ({contact, home}) => {
     //Arrange
     const userInfo = formContactDataFaker()
     //Act

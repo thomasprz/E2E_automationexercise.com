@@ -1,7 +1,7 @@
 import {test,expect} from '../fixtures/base.fixture'
 import {reviewProductFaker} from '../factories/product-details.factory'
 
-test.describe('Page des Produits', {tag:'@regression'}, () =>{
+test.describe('Page des Produits', () =>{
     test.beforeEach('Naviguer vers la page de connexion', async({home, menu, products}) => {
         await home.goTo()
         await home.popup()
@@ -10,7 +10,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.expectProductsPage()
     })
 
-    test('Vérifier l\'affichage de la page produits et de la page détail d\'un produit', async ({products}) => {
+    test('Vérifier l\'affichage de la page produits et de la page détail d\'un produit @smoke', async ({products}) => {
         //Act
         await expect(products.locatorAllProductsHeader).toBeVisible()
         await expect(products.locatorListItems).toBeVisible()
@@ -20,7 +20,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.details.expectProductDetail()
     })
 
-    test('Rechercher un produit', async ({products}) => {
+    test('Rechercher un produit @regression', async ({products}) => {
         //Arrange
         const productData = {
             name: 'blue',
@@ -34,7 +34,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.expectSearchProduct(productData.name)
     })
 
-    test('Afficher les produits d\'une catégorie', async ({products}) => {
+    test('Afficher les produits d\'une catégorie @regression', async ({products}) => {
         //Arrange
         const firstProductData = {
             category : "Women",
@@ -59,7 +59,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.category.expectCategoryHeader(secondProductData.title) 
     })
 
-    test('Afficher les produits par marques', async ({products}) => {
+    test('Afficher les produits par marques @regression', async ({products}) => {
         //Arrange
         const brandFirstProductData = {
             brand : "Biba",
@@ -81,7 +81,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await expect(products.brand.locatorProductsItems).toHaveCount(4)
     })
 
-    test('Ajouter un avis sur un produit', async ({products}) => {
+    test('Ajouter un avis sur un produit @regression', async ({products}) => {
         //Arrange
         const reviewData = reviewProductFaker()
         //Act

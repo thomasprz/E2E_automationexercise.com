@@ -3,7 +3,7 @@ import {createAccountUserApi} from '../factories/api.factory'
 import {loginToAccountFaker} from '../factories/login.factory'
 import { Configuration } from '../config/configuration'
 
-test.describe('Connexion', {tag:'@regression'}, () => {
+test.describe('Connexion', () => {
     test.beforeEach('Naviguer vers la page de connexion', async ({home, menu, login}) => {
         await home.goTo()
         await home.popup()
@@ -12,7 +12,7 @@ test.describe('Connexion', {tag:'@regression'}, () => {
         await login.expectLoginPage()
     })
 
-    test("Connexion de l'utilisateur avec un email et un mot de passe corrects", async ({api, login, menu}) => {
+    test("Connexion de l'utilisateur avec un email et un mot de passe corrects @smoke", async ({api, login, menu}) => {
         //Arrange
         const userDataApi = createAccountUserApi();
         //Act
@@ -27,7 +27,7 @@ test.describe('Connexion', {tag:'@regression'}, () => {
         await login.deleteAccount.expectDeleteAccountPage()
     })
 
-    test("Connexion d'un utilisateur avec un email et un mot de passe incorrects", async ({login}) => {
+    test("Connexion d'un utilisateur avec un email et un mot de passe incorrects @regression", async ({login}) => {
         //Arrange
         const loginUserData = loginToAccountFaker()
         //Act
@@ -36,7 +36,7 @@ test.describe('Connexion', {tag:'@regression'}, () => {
         await expect(login.locatorIncorrectMessageLogin).toBeVisible()
     })
 
-    test("Déconnexion de l'utilisateur", async ({login, menu}) => {
+    test("Déconnexion de l'utilisateur @smoke", async ({login, menu}) => {
         //Arrange
         const user = {
             email: Configuration.email, 

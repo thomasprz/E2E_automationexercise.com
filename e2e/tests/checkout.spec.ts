@@ -6,14 +6,14 @@ import {commentAreaFaker} from '../factories/checkout.factory'
 import {cardDataFaker} from '../factories/payment.factory'
 import {createAccountUserApi} from '../factories/api.factory'
 
-test.describe("Processus de commande", {tag:'@regression'}, () => {
+test.describe("Processus de commande", () => {
     test.beforeEach('Naviguer vers la page d\'accueil', async ({home}) => {
         await home.goTo()
         await home.popup()
         await home.expectHomepage()
     })
 
-    test('Vérifier que l\'utilisateur peut créer un compte pendant le processus de commande', async({menu, products, cart, login, signup, checkout, payment}) => {
+    test('Vérifier que l\'utilisateur peut créer un compte pendant le processus de commande @smoke', async({menu, products, cart, login, signup, checkout, payment}) => {
         //Arrange
         const userData = createSignupUserFaker()
         const userAccountData = createAccountInformationFaker()
@@ -55,7 +55,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await signup.deleteAccount.clickContinue()
     })
 
-    test('Vérifier que l\'utilisateur peut créer un compte avant le processus de commande', async ({home,menu,login, signup, cart, checkout, payment}) => {
+    test('Vérifier que l\'utilisateur peut créer un compte avant le processus de commande @regression', async ({home,menu,login, signup, cart, checkout, payment}) => {
         //Arrange
         const userBaseData = createSignupUserFaker()
         const userInformationData = createAccountInformationFaker()
@@ -95,7 +95,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await home.expectHomepage()
     })
 
-    test('Vérifier que l\'utilisateur peut se connecter avant le processus de commande', async ({home,menu,login, signup, cart, checkout, payment}) => {
+    test('Vérifier que l\'utilisateur peut se connecter avant le processus de commande @regression', async ({home,menu,login, signup, cart, checkout, payment}) => {
         //Arrange
         const userBaseData = createSignupUserFaker()
         const userInformationData = createAccountInformationFaker()
@@ -136,7 +136,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await payment.done.clickContinue()
     })
 
-    test('Vérifier les détails de l\'adresse sur la page de paiement', async ({home, api, login,menu, products, cart, checkout}) => {
+    test('Vérifier les détails de l\'adresse sur la page de paiement @regression', async ({home, api, login,menu, products, cart, checkout}) => {
         //Arrange
         const userDataApi = createAccountUserApi()
 
@@ -160,7 +160,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await login.deleteAccount.clickContinue()
     })
 
-    test('Télécharger la facture après une commande', async ({home, cart, login, signup, checkout, payment}) => {
+    test('Télécharger la facture après une commande @regression', async ({home, cart, login, signup, checkout, payment}) => {
         //Arrange
         const userData = createSignupUserFaker()
         const userAccountData = createAccountInformationFaker()
