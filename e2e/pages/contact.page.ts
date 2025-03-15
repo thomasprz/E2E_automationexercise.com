@@ -2,6 +2,7 @@ import {Page,Locator,expect} from '@playwright/test'
 import { BasePage } from './base.page';
 
 export class ContactPage extends BasePage{
+    //LOCATOR
     readonly locatorContactHeader : Locator
     readonly locatorNameInput : Locator
     readonly locatorEmailInput : Locator
@@ -15,6 +16,7 @@ export class ContactPage extends BasePage{
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorContactHeader = page.getByRole('heading', {name:'Get In Touch'})
         this.locatorNameInput = page.getByTestId('name')
         this.locatorEmailInput = page.getByTestId('email')
