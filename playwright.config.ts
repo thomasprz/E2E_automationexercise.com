@@ -9,7 +9,7 @@ export default defineConfig({
   testDir: './e2e/tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
@@ -22,10 +22,8 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'Chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });
