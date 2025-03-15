@@ -5,6 +5,7 @@ import { ProductsPage } from './products/products.page';
 import { MenuComponent } from '../components/menu.component';
 
 export class HomePage extends BasePage {
+    //LOCATOR
     readonly locatorHomepageHeader : Locator
     readonly locatorRecommendedItemsHeader : Locator
     readonly locatorAddToCart : Locator
@@ -19,6 +20,7 @@ export class HomePage extends BasePage {
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorHomepageHeader = page.getByAltText('Website for automation practice');
         this.locatorRecommendedItemsHeader = page.getByRole('heading', {name:'recommended items'})
         this.locatorAddToCart = page.locator('.recommended_items .add-to-cart')
@@ -26,7 +28,6 @@ export class HomePage extends BasePage {
         this.locatorViewCartLink =page.getByRole('link', {name:'View Cart'})
         this.locatorScrollUp = page.locator('#scrollUp')
         this.locatorFullFledgedHeader = page.getByRole('heading', {name:'Full-Fledged practice website for Automation Engineers'})
-
         //PAGE
         this.footer = new FooterComponent(page)
         this.products = new ProductsPage(page)

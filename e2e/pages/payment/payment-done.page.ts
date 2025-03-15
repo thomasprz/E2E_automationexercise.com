@@ -3,6 +3,7 @@ import { BasePage } from '../base.page';
 import * as fs from 'fs';
 
 export class PaymentDonePage extends BasePage{
+    //LOCATOR
     readonly locatorOrderPlacedHeader : Locator
     readonly locatorDownloadInvoiceButton : Locator
     readonly locatorContinueButton : Locator
@@ -10,6 +11,7 @@ export class PaymentDonePage extends BasePage{
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorOrderPlacedHeader = page.getByRole('heading', {name:'Order Placed!'})
         this.locatorDownloadInvoiceButton = page.getByRole('link', {name:'Download Invoice'})
         this.locatorContinueButton = page.getByTestId('continue-button')

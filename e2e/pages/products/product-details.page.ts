@@ -2,6 +2,7 @@ import {Page, Locator, expect} from '@playwright/test'
 import { BasePage } from '../base.page';
 
 export class ProductDetailsPage extends BasePage {
+    //LOCATOR
     readonly locatorProductName : Locator
     readonly locatorCategoryProduct : Locator
     readonly locatorPriceProduct : Locator
@@ -21,6 +22,7 @@ export class ProductDetailsPage extends BasePage {
 
     constructor(page:Page,){
         super(page)
+        //LOCATOR
         this.locatorProductName = page.locator('.product-information h2')
         this.locatorCategoryProduct = page.locator('.product-information p:has-text("Category:")');
         this.locatorPriceProduct = page.locator('.product-information span:has-text("Rs.")');

@@ -13,13 +13,13 @@ test.describe('Panier', {tag:'@regression'}, () => {
     test('Vérifier l\'abonnement sur la page du panier', async ({cart, menu}) =>{
         //Arrange
         const userEmailData = fillSubscriptionFieldFaker()
-
         //Act
         await menu.visitCart()
         await cart.expectCartPage()
         await cart.scrollDown()
         await expect(cart.footer.locatorSubscriptionHeader).toBeVisible()
         await cart.footer.fillSubscriptionField(userEmailData.email)
+        //Assert
         await cart.footer.expectSucessfullySubscription()
     })
 
@@ -45,11 +45,12 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await products.clickContinueShopping()
         await products.clickAddToCart(dataProducts[1].id)
         await products.clickViewCart()
+        //Assert
         await expect(cart.locatorProduct).toHaveCount(2)
         await cart.expectProductsInCart(dataProducts)
     })
 
-    test('Vérifier la quantité des produits dans le panier', async ({home, menu, cart,products}) => {
+    test('Vérifier la quantité des produits dans le panier', async ({menu, cart,products}) => {
         //Arrange
         const dataProduct = {
             id:4,
@@ -142,11 +143,12 @@ test.describe('Panier', {tag:'@regression'}, () => {
         await cart.expectOneProductInCart(productData)
     })
 
-    test('Ajouter au panier à partir des articles recommandés', async ({home, cart, menu}) => {
+    test('Ajouter au panier à partir des articles recommandés', async ({home, cart}) => {
         await home.scrollDown()
         await expect(home.locatorRecommendedItemsHeader).toBeVisible()
         await home.addRecommendedProductToCart()
         await cart.expectCartPage()
+        //Assert
         await expect(cart.locatorProduct).toBeVisible()
         await expect(cart.locatorProduct).toHaveCount(1)
     })

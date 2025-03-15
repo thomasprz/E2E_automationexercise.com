@@ -1,12 +1,11 @@
 import { BasePage } from '../base.page';
 import {Page, Locator, expect} from '@playwright/test'
-import { LoginPage } from './login.page';
 import { AccountCreatedPage } from './account-created.page';
 import { DeleteAccountPage } from './delete-account.page';
 
 export class SignupPage extends BasePage {
+    //LOCATOR
     readonly locatorAccountHeader : Locator
-    //ACCOUNT INFORMATION
     readonly locatorGender : Locator
     readonly locatorNameInput : Locator
     readonly locatorEmailInput : Locator
@@ -16,7 +15,6 @@ export class SignupPage extends BasePage {
     readonly locatorYearBirth : Locator
     readonly locatorNewsletter : Locator
     readonly locatorSpecialOffers : Locator
-    //ADDRESS INFORMATION
     readonly locatorFirstNameInput : Locator
     readonly locatorLastNameInput : Locator
     readonly locatorCompanyInput : Locator
@@ -34,8 +32,8 @@ export class SignupPage extends BasePage {
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorAccountHeader = page.getByRole('heading', {name:'Enter Account Information'})
-        //ACCOUNT INFORMATION
         this.locatorGender = page.getByLabel('Mr.')
         this.locatorNameInput = page.getByTestId('name')
         this.locatorEmailInput = page.getByTestId('email')
@@ -45,7 +43,6 @@ export class SignupPage extends BasePage {
         this.locatorYearBirth = page.getByTestId('years')
         this.locatorNewsletter = page.getByRole('checkbox', {name:'Sign up for our newsletter!'})
         this.locatorSpecialOffers = page.getByRole('checkbox', {name:'Receive special offers from our partners!'})
-        //ADDRESS INFORMATION
         this.locatorFirstNameInput = page.getByTestId('first_name')
         this.locatorLastNameInput = page.getByTestId('last_name')
         this.locatorCompanyInput = page.getByTestId('company')

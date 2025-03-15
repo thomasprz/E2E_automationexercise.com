@@ -13,10 +13,10 @@ test.describe('Contact', {tag: "@regression"}, () => {
     test('Saisie du formulaire de contact', async ({contact, home}) => {
     //Arrange
     const userInfo = formContactDataFaker()
-
     //Act
     await contact.fillContactUsForm(userInfo)
     await contact.dialogPopup()
+    //Assert
     await expect(contact.locatorSuccessMessage).toBeVisible()
     await contact.clickHomeButton()
     await home.expectHomepage()

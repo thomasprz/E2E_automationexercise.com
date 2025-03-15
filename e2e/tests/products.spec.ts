@@ -54,6 +54,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.category.expectCategoryHeader(firstProductData.title)
         await products.category.sidebar.clickOnCategory(secondProductData.category)
         await products.category.sidebar.clickOnProduct(secondProductData.product)
+        //Assert
         await products.category.expectCategoryProductsPage()
         await products.category.expectCategoryHeader(secondProductData.title) 
     })
@@ -87,6 +88,7 @@ test.describe('Page des Produits', {tag:'@regression'}, () =>{
         await products.clickFirstViewProduct()
         await expect(products.details.locatorWriteYourReviewHeader).toBeVisible()
         await products.details.fillReviewProductForm(reviewData)
+        //Assert
         await expect(products.details.locatorAlertSuccess).toBeVisible()
         await expect(products.details.locatorAlertSuccess).toHaveText('Thank you for your review.')
     })

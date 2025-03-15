@@ -1,7 +1,7 @@
 import {test,expect} from '../fixtures/base.fixture'
 
 test.describe('Page d\'accueil', {tag:'@regression'}, () =>{
-    test.beforeEach('Naviguer vers la page de connexion', async({home, menu, products}) => {
+    test.beforeEach('Naviguer vers la page de connexion', async({home}) => {
         await home.goTo()
         await home.popup()
         await home.expectHomepage()

@@ -3,6 +3,7 @@ import { BasePage } from '../base.page';
 import { SidebarComponent } from '../../components/sidebar.component';
 
 export class BrandProductsPage extends BasePage{
+    //LOCATOR
     readonly locatorBrandHeader : Locator
     readonly locatorProductsItems : Locator
     //PAGE
@@ -11,6 +12,7 @@ export class BrandProductsPage extends BasePage{
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorBrandHeader = page.locator('.features_items > h2')
         this.locatorProductsItems = page.locator('.features_items .single-products')
         //PAGE

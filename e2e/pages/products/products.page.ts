@@ -7,6 +7,7 @@ import { BrandProductsPage } from './brand-products.page';
 import { MenuComponent } from '../../components/menu.component';
 
 export class ProductsPage extends BasePage{
+    //LOCATOR
     readonly locatorAllProductsHeader : Locator
     readonly locatorSearchedProductsHeader : Locator
     readonly locatorListItems : Locator
@@ -25,6 +26,7 @@ export class ProductsPage extends BasePage{
 
     constructor(page:Page){
         super(page)
+        //LOCATOR
         this.locatorAllProductsHeader = page.getByRole('heading', {name:'All Products'})
         this.locatorSearchedProductsHeader = page.getByRole('heading', {name:'Searched Products'})
         this.locatorListItems = page.locator('.features_items')
@@ -34,7 +36,6 @@ export class ProductsPage extends BasePage{
         this.locatorSearchButton = page.locator('#submit_search')
         this.locatorContinueShoppingButton = page.getByRole('button', {name:"Continue Shopping"})
         this.locatorViewCart = page.getByRole('link', {name:'View Cart'})
-
         //PAGE
         this.details = new ProductDetailsPage(page)
         this.category = new CategoryProductsPage(page)

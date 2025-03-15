@@ -131,6 +131,7 @@ test.describe("Processus de commande", {tag:'@regression'}, () => {
         await checkout.fillCommentArea(textArea)
         await checkout.clickPlaceOrder()
         await payment.fillPaymentForm(cardData)
+        //Assert
         await payment.done.expectPaymentDonePage()
         await payment.done.clickContinue()
     })
