@@ -10,6 +10,8 @@ export class HomePage extends BasePage {
     readonly locatorAddToCart : Locator
     readonly locatorContinueShoppingButton : Locator
     readonly locatorViewCartLink : Locator
+    readonly locatorScrollUp : Locator
+    readonly locatorFullFledgedHeader : Locator
     //PAGE
     readonly footer : FooterComponent
     readonly products : ProductsPage
@@ -22,6 +24,9 @@ export class HomePage extends BasePage {
         this.locatorAddToCart = page.locator('.recommended_items .add-to-cart')
         this.locatorContinueShoppingButton = page.getByRole('button', {name:'Continue Shopping'})
         this.locatorViewCartLink =page.getByRole('link', {name:'View Cart'})
+        this.locatorScrollUp = page.locator('#scrollUp')
+        this.locatorFullFledgedHeader = page.getByRole('heading', {name:'Full-Fledged practice website for Automation Engineers'})
+
         //PAGE
         this.footer = new FooterComponent(page)
         this.products = new ProductsPage(page)
@@ -36,5 +41,9 @@ export class HomePage extends BasePage {
     async addRecommendedProductToCart(){
         await this.locatorAddToCart.first().click()
         await this.locatorViewCartLink.click()
+    }
+
+    async clickArrowScrollUp(){
+        await this.locatorScrollUp.click()
     }
 }
