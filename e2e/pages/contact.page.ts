@@ -44,7 +44,7 @@ export class ContactPage extends BasePage{
     }
 
     async uploadFile() {
-        const filePath = 'e2e/test-data/contact/logo.jpg';
+        const filePath = 'e2e/assets/contact/logo.jpg';
         await this.locatorUploadFile.setInputFiles(filePath);
     }
 
